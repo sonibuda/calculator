@@ -34,4 +34,12 @@ function operate(n1, n2, operator){
     }
  }
 
+ const number = document.querySelectorAll(".digit");
+ const display = document.getElementById("screen");
+ number.forEach(number => {
+    number.addEventListener('click', function(event) {
+        display.textContent = event.target.value;
+        console.log(event.target);
+    })
+ });
 
