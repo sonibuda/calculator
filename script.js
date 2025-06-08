@@ -44,4 +44,24 @@ function operate(n1, n2, operator){
     })
  });
 
+ const operatorPressed = document.querySelectorAll(".operator");
+let currentOperator;
+let operand1;
+let operand2;
+ operatorPressed.forEach(button => {
+    button.addEventListener('click', function(event) {
+        operand1 = Number(currentInput);
+        currentOperator = event.target.value; //do i need to convert this to  *, +, etc. or will it work with the above switch statement?
+        currentInput = "";
+    });
+});
 
+ const equalPressed = document.querySelector(".equals");
+
+
+ equalPressed.addEventListener('click', function(event){
+    operand2 = Number(currentInput);
+    let result = operate(operand1, operand2, currentOperator);
+    display.textContent = result;
+    currentInput = result.toString();
+ });
