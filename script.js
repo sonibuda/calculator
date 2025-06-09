@@ -37,9 +37,14 @@ function operate(n1, n2, operator){
  const number = document.querySelectorAll(".digit");
  const display = document.getElementById("screen");
  let currentInput = "";
+ let equalsPressed = false;
  number.forEach(number => {
     number.addEventListener('click', function(event) {
-      currentInput += event.target.value;
+      if (equalsPressed) {
+        currentInput = "";
+        equalsPressed = false;
+      }
+        currentInput += event.target.value;
       display.textContent = currentInput;
     })
  });
@@ -51,7 +56,7 @@ let operand2;
  operatorPressed.forEach(button => {
     button.addEventListener('click', function(event) {
         operand1 = Number(currentInput);
-        currentOperator = event.target.value; //do i need to convert this to  *, +, etc. or will it work with the above switch statement?
+        currentOperator = event.target.value; 
         currentInput = "";
     });
 });
@@ -64,4 +69,6 @@ let operand2;
     let result = operate(operand1, operand2, currentOperator);
     display.textContent = result;
     currentInput = result.toString();
+    equalsPressed = true;
  });
+
