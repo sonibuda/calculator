@@ -72,3 +72,14 @@ let operand2;
     equalsPressed = true;
  });
 
+ const AC = document.querySelector(".clear");
+
+ AC.addEventListener('click', function(event) {
+    operand1 = "";
+    operand2 = "";
+    currentOperator = "";
+    currentInput = "";
+    display.textContent = 0;
+    equalsPressed = false;
+ })
+
