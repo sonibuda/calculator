@@ -65,7 +65,17 @@ function operate(n1, n2, operator){
     currentInput = "-" + currentInput;
    }
    display.textContent = currentInput;
-   console.log(currentInput);
+});
+
+const point = document.querySelector(".point");
+
+point.addEventListener('click', function(event) {
+    if (currentInput.includes(".")) {
+        currentInput = currentInput;
+    } else {
+        currentInput = currentInput + ".";
+    }
+    display.textContent = currentInput;
 });
 
 let currentOperator;
