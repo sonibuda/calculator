@@ -14,9 +14,7 @@ function divide(n1, n2){
     return n1 / n2;
 }
 
-const n1 = 0;
-const n2 = 0;
-const operator = '+';
+//
 
 function operate(n1, n2, operator){
     switch(operator){
@@ -40,16 +38,36 @@ function operate(n1, n2, operator){
  let equalsPressed = false;
  number.forEach(number => {
     number.addEventListener('click', function(event) {
-      if (equalsPressed) {
+      if (equalsPressed && currentInput !== "-") {
         currentInput = "";
         equalsPressed = false;
       }
+      if (currentInput === "-") {
+        currentInput = "-" +event.target.value;
+      } else {
         currentInput += event.target.value;
+      }
       display.textContent = currentInput;
     })
  });
 
  const operatorPressed = document.querySelectorAll(".operator");
+ const sign = document.querySelector(".sign");
+
+  sign.addEventListener('click', function(event) {
+   if (currentInput === "") {
+    currentInput = "-";
+   } else if (currentInput === "-") {
+    currentInput = "";
+   } else if (currentInput.startsWith("-")){
+    currentInput = currentInput.slice(1);
+   } else {
+    currentInput = "-" + currentInput;
+   }
+   display.textContent = currentInput;
+   console.log(currentInput);
+});
+
 let currentOperator;
 let operand1;
 let operand2;
@@ -83,3 +101,5 @@ let operand2;
     equalsPressed = false;
  })
 
+ //next steps- start with the 'gotchas' on 7.
+ 
