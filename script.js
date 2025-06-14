@@ -11,7 +11,11 @@ function multiply(n1, n2){
 }
 
 function divide(n1, n2){
+    if (n2 === 0){
+        return;
+    } else {
     return n1 / n2;
+}
 }
 
 function percent(n1, n2){
@@ -112,11 +116,16 @@ operatorPressed.forEach(button => {
  equalPressed.addEventListener('click', function(event){
     operand2 = Number(currentInput);
     let result = operate(operand1, operand2, currentOperator);
+    if (operand2 === 0 || operand2 === "0") {
+        result = "Nope";
+        display.textContent = result;
+    } else {
     result = Math.round((result + Number.EPSILON) * 100) / 100;
-     console.log(result);
     display.textContent = operand1 + " " + currentOperator + " " + operand2 + " = " + result;
     currentInput = result.toString();
     equalsPressed = true;
+    }
+    
  });
 
 //adds functionality for the clear button.
@@ -130,3 +139,5 @@ operatorPressed.forEach(button => {
     display.textContent = 0;
     equalsPressed = false;
  });
+
+ //need to go back and fix percentage not working as unary operator
