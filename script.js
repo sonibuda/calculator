@@ -116,8 +116,8 @@ operatorPressed.forEach(button => {
  equalPressed.addEventListener('click', function(event){
     operand2 = Number(currentInput);
     let result = operate(operand1, operand2, currentOperator);
-    if (operand2 === 0 || operand2 === "0") {
-        result = "Nope";
+    if ((currentOperator === "/" && operand2 === 0) || (currentOperator === "/" && operand2 === "0")) {
+        result = "Nope.";
         display.textContent = result;
     } else {
     result = Math.round((result + Number.EPSILON) * 100) / 100;
