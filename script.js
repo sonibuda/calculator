@@ -98,11 +98,12 @@ let operand2;
 
 operatorPressed.forEach(button => {
     button.addEventListener('click', function(event){
-    let op = event.target.value;
     operand1 = Number(currentInput);
-    currentOperator = op;
+    currentOperator = event.target.value;
     currentInput = "";
+    display.textContent = operand1 + " " + currentOperator;
     });
+    
 });
 
  const equalPressed = document.querySelector(".equals");
@@ -111,7 +112,9 @@ operatorPressed.forEach(button => {
  equalPressed.addEventListener('click', function(event){
     operand2 = Number(currentInput);
     let result = operate(operand1, operand2, currentOperator);
-    display.textContent = result;
+    result = Math.round((result + Number.EPSILON) * 100) / 100;
+     console.log(result);
+    display.textContent = operand1 + " " + currentOperator + " " + operand2 + " = " + result;
     currentInput = result.toString();
     equalsPressed = true;
  });
