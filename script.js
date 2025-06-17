@@ -102,13 +102,26 @@ let operand2;
 
 operatorPressed.forEach(button => {
     button.addEventListener('click', function(event){
-    operand1 = Number(currentInput);
-    currentOperator = event.target.value;
-    currentInput = "";
-    display.textContent = operand1 + " " + currentOperator;
+     if (currentInput === "") {
+        return;
+     }
+     if (operand1 === undefined || operand1 === null) {
+        operand1 = Number(currentInput);
+     } else if (currentOperator) {
+        operand2 = Number(currentInput);
+        operand1 = operate(operand1, operand2, currentOperator);
+        display.textContent = operand1
+     }
+      currentOperator = event.target.value;
+      currentInput = "";
+      equalsPressed = false;
+
+      console.log("operand1:", operand1);
+      console.log("chained oepration:", operand1, currentOperator, operand2);
     });
-    
+
 });
+
 
  const equalPressed = document.querySelector(".equals");
 
@@ -121,23 +134,26 @@ operatorPressed.forEach(button => {
         display.textContent = result;
     } else {
     result = Math.round((result + Number.EPSILON) * 100) / 100;
+    console.log(result);
     display.textContent = operand1 + " " + currentOperator + " " + operand2 + " = " + result;
     currentInput = result.toString();
     equalsPressed = true;
+    return result;
+   
     }
-    
+     console.log(result);
  });
 
 //adds functionality for the clear button.
  const AC = document.querySelector(".clear");
 
  AC.addEventListener('click', function(event) {
-    operand1 = "";
-    operand2 = "";
-    currentOperator = "";
+    operand1 = null;
+    operand2 = null;
+    currentOperator = null;
     currentInput = "";
     display.textContent = 0;
     equalsPressed = false;
  });
 
- //need to go back and fix percentage not working as unary operator
+ //need to go back and fix percentage not working as unary operator/
