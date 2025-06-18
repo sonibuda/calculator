@@ -55,6 +55,9 @@ function operate(n1, n2, operator){
       if (equalsPressed && currentInput !== "-") {
         currentInput = "";
         equalsPressed = false;
+        operand1 = null;
+        operand2 = null;
+        currentOperator = null;
       }
       if (currentInput === "-") {
         currentInput = "-" +event.target.value;
@@ -105,9 +108,13 @@ operatorPressed.forEach(button => {
      if (currentInput === "") {
         return;
      }
+     if (equalsPressed) {
+        operand1 = Number(currentInput);
+        equalsPressed = false;
+     }
      if (operand1 === undefined || operand1 === null) {
         operand1 = Number(currentInput);
-     } else if (currentOperator) {
+     } else if (currentOperator && currentInput !== "") {
         operand2 = Number(currentInput);
         operand1 = operate(operand1, operand2, currentOperator);
         display.textContent = operand1
@@ -138,10 +145,12 @@ operatorPressed.forEach(button => {
     display.textContent = operand1 + " " + currentOperator + " " + operand2 + " = " + result;
     currentInput = result.toString();
     equalsPressed = true;
+    currentOperator = null;
     return result;
+    
    
     }
-     console.log(result);
+
  });
 
 //adds functionality for the clear button.
@@ -157,3 +166,4 @@ operatorPressed.forEach(button => {
  });
 
  //need to go back and fix percentage not working as unary operator/
+
