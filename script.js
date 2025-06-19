@@ -123,8 +123,7 @@ operatorPressed.forEach(button => {
       currentInput = "";
       equalsPressed = false;
 
-      console.log("operand1:", operand1);
-      console.log("chained oepration:", operand1, currentOperator, operand2);
+    
     });
 
 });
@@ -141,7 +140,6 @@ operatorPressed.forEach(button => {
         display.textContent = result;
     } else {
     result = Math.round((result + Number.EPSILON) * 100) / 100;
-    console.log(result);
     display.textContent = operand1 + " " + currentOperator + " " + operand2 + " = " + result;
     currentInput = result.toString();
     equalsPressed = true;
@@ -165,5 +163,5 @@ operatorPressed.forEach(button => {
     equalsPressed = false;
  });
 
- //need to go back and fix percentage not working as unary operator/
+
 
