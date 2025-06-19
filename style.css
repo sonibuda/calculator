@@ -53,6 +53,13 @@ button, main {
 
 button {
     box-shadow: 2px 2px;
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid black;
+}
+
+button.pressed {
+    border: 2px solid #333;
+    box-shadow: none;
 }
 
 

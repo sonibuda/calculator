@@ -163,5 +163,16 @@ operatorPressed.forEach(button => {
     equalsPressed = false;
  });
 
+ //adds 'press' visual effect for buttons when clicked.
+ const allButtons = document.querySelectorAll("button");
+
+ allButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        button.classList.add("pressed");
+        setTimeout(() => {
+            button.classList.remove("pressed");
+        }, 150);
+    });
+ });
 
 
